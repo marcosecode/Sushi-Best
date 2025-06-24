@@ -69,3 +69,20 @@ const form = document.querySelector(".form");
       submitBtn.textContent = "❌ Erreur, réessayez";
     }
   });
+  const sections = document.querySelectorAll(".section");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate");
+      } else {
+        entry.target.classList.remove("animate"); // allows repeat
+      }
+    });
+  }, {
+    threshold: 0.2,
+  });
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
